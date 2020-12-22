@@ -1,21 +1,123 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container center">
 
-<router-outlet></router-outlet>
+  <div class="alelo-img">
+    <div class="flex-img">
+      <img src="../assets/images/alelo-logo.png">
+    </div>
+  </div>
+
+  <div class="splited-body">
+    <h2>Update Vehicle</h2>
+    <mat-card class=" main-card flex-card" style="margin-top: 20px;">
+      <div class="form-content" fxFlex="100">
+        <div class="card-body flex-body">
+          <form id="add-form" (ngSubmit)="saveVehicle(f)" #f="ngForm">
+            <mat-form-field>
+              <mat-label>Placa</mat-label>
+              <input matInput [(ngModel)]="vehicle.plate" id="plate" name="plate" #plate="ngModel" required
+                class="form-control" [ngClass]="{ 'is-invalid': f.submitted && plate.invalid }">
+            </mat-form-field>
+            <div>
+              <mat-form-field>
+                <mat-label>Modelo</mat-label>
+                <input matInput type="text" [(ngModel)]="vehicle.model" id="model" name="model" #model="ngModel"
+                  required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && plate.invalid }"
+                  placeholder="Digite o modelo">
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field>
+                <mat-label>Cor</mat-label>
+                <input matInput type="text" [(ngModel)]="vehicle.color" id="color" name="color" #color="ngModel"
+                  required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && plate.invalid }"
+                  placeholder="Digite a cor">
+              </mat-form-field>
+            </div>
+
+            <div>
+              <fieldset class="form-group">
+                <div class="block bl-button">
+                  <input class="form-check-input" [(ngModel)]="vehicle.status" type="radio" name="gridRadios"
+                    id="gridRadios2" value=true>
+                  <label class="form-check-label" for="gridRadios2">
+                    active
+                  </label>
+                </div>
+                <div class="block bl-button" style="max-width: 166px!important;">
+                  <input class="form-check-input" [(ngModel)]="vehicle.status" type="radio" name="gridRadios"
+                    id="gridRadios2" value=false>
+                  <label class="form-check-label" for="gridRadios2">
+                    inactive
+                  </label>
+                </div>
+              </fieldset>
+
+            </div>
+
+
+            <div class="buttons-op" style="text-align: center;">
+              <button mat-raised-button type="reset" (click)="cleanForm(f)" style="margin-right: 10px;">Reset</button>
+              <button mat-raised-button type="submit" color="accent">Save</button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <div class="flex-img center">
+          <div fxFlex="100">
+            <img src="../assets/images/car.png">
+          </div>
+        </div>
+      </div>
+    </mat-card>
+
+
+
+
+
+
+    <div class="card list-car" style="margin-top:20px; padding:5px!important;">
+      <div class="card-body" style="padding:5px!important;">
+        <table class="table table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Placa</th>
+              <th scope="col">modelo</th>
+              <th scope="col">Cor</th>
+              <th scope="col">Status</th>
+              <th scope="col">Opções</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let vehicle of vehicles">
+              <td>{{vehicle.id}}</td>
+              <td>{{vehicle.plate}}</td>
+              <td>{{vehicle.model}}</td>
+              <td>{{vehicle.color}}</td>
+              <td>{{vehicle.status}}</td>
+              <td>
+                <div class="buttons-op">
+                  <button type="button" class="btn btn-warning btn-sm" (click)="editVehicle(vehicle)">Editar</button>
+                  <button type="button" class="btn btn-danger btn-sm ml-1"
+                    (click)="deleteVehicle(vehicle)">Deletar</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+</div>

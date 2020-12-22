@@ -1,0 +1,77 @@
+.main-card{
+  background-color: #F7F7F7;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.flex-card{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.flex-img{
+  display: block;
+  padding: 60px;
+  img{
+    max-width: 100%;
+  }
+}
+
+.flex-body{
+  display: block;
+}
+
+.form-content{
+  display: flex;
+  flex-direction: row wrap;
+
+}
+
+@media(max-width: 600px){
+  .form-content{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .alelo-img{
+    display: flex;
+    flex: 1 1 100%;
+  }
+}
+
+
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  width: 1600px;
+  margin: 15px;
+  padding: 5px;
+}
+
+
+.center{
+  text-align: center;
+}
+.radio-buttons{
+  display: flex;
+}
+
+.block{
+  display: block;
+}
+
+
+.bl-button{
+  max-width: 155px!important;
+  margin-top: 13px;
+}
