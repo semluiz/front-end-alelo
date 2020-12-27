@@ -15,6 +15,7 @@ export class AppComponent {
   vehicle = {} as Vehicle;
 
   button: Boolean;
+  newButton: Boolean;
 
   vehicles: Vehicle[];
 
